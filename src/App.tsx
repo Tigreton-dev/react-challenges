@@ -52,7 +52,8 @@ function App() {
 				{step === 2 && (
 					<img src={'./Snap.png'} ></img>
 				)}
-				<div><p className='text-neutral-600 text-sm mt-10'>Created by JaviSan. View the code or deploy your own.</p></div>
+				<div><p className='text-neutral-600 text-sm mt-10'>Created by JaviSan. View the code at <a className="font-bold" href="https://github.com/Tigreton-dev/react-challenges">GitHub</a></p>
+				</div>
 			</div>
 		</div >
 	)
