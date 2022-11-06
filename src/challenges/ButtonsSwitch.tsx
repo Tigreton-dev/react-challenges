@@ -1,24 +1,28 @@
 import { useEffect, useState, useRef } from 'react'
 
-const ButtonSwitch = ({ setStep }) => {
+interface Props {
+    setStep: (a: number) => void;
+}
+
+const ButtonSwitch = ({ setStep }: Props) => {
     const ref = useRef(null)
-    const [selectedButton, setSelectedButton] = useState(null)
+    const [selectedButton, setSelectedButton] = useState<Element | null>(null)
 
     useEffect(() => {
         console.log(ref.current)
         setSelectedButton(ref.current)
     }, [])
 
-    const clickHandler = (e, val: number) => {
-        console.log(selectedButton)
+    const clickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, val: number) => {
+        const target = e.target as Element;
         if (selectedButton !== null) {
             selectedButton.classList.remove('bg-blue-600');
             selectedButton.classList.add('bg-neutral-800');
         }
-        e.target.classList.remove('bg-neutral-800');
-        e.target.classList.add('bg-blue-600');
+        target.classList.remove('bg-neutral-800');
+        target.classList.add('bg-blue-600');
         setStep(val)
-        setSelectedButton(e.target)
+        setSelectedButton(target)
     }
 
     return (

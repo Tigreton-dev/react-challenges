@@ -9,7 +9,8 @@ function App() {
 	const [step, setStep] = useState(0)
 
 	useEffect(() => {
-		if (step === 0) document.getElementById('aa').innerHTML = challenge1
+		const element = document.getElementById('aa');
+		if (step === 0 && element !== null) element.innerHTML = challenge1
 	}, [step])
 
 	return (
