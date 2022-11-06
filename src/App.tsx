@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { challenge1 } from './challengeInfo'
+import { challenge1 } from './challenges/challengeInfo'
 import Challenge1 from './challenges/Challenge1'
+import Code from './challenges/Code'
 import './App.css'
 
 function App() {
@@ -12,8 +13,12 @@ function App() {
 	}, [step])
 
 	const clickHandler = (e, val: number) => {
-		if (selectedButton !== null) selectedButton.classList.remove('bg-blue-600');
+		if (selectedButton !== null) {
+			selectedButton.classList.remove('bg-blue-600');
+			selectedButton.classList.add('bg-neutral-800');
+		}
 		console.log(e.target.className)
+		e.target.classList.remove('bg-neutral-800');
 		e.target.classList.add('bg-blue-600');
 		setStep(val)
 		setSelectedButton(e.target)
@@ -41,7 +46,7 @@ function App() {
 					<button className='bg-neutral-800 px-5 m-5 text-white p-1 rounded-md' onClick={(e) => clickHandler(e, 0)}>Description</button>
 					<button className='bg-neutral-800 px-5 m-5 text-white p-1 rounded-md' onClick={(e) => clickHandler(e, 1)}>Demo</button>
 					<button className='bg-neutral-800 px-5 m-5 text-white p-1 rounded-md' onClick={(e) => clickHandler(e, 2)}>Code</button>
-					<button className='bg-neutral-800 px-5 m-5 text-white p-1 rounded-md' onClick={(e) => clickHandler(e, 2)}>Solution</button>
+					<button className='bg-neutral-800 px-5 m-5 text-white p-1 rounded-md' onClick={(e) => clickHandler(e, 3)}>Solution</button>
 				</div>
 				{step === 0 && (
 					<div id='aa' className='min-h-[400px] text-left border-solid border border-neutral-800 text-white bg-black rounded-xl text-xs p-8'></div>
@@ -50,9 +55,12 @@ function App() {
 					<Challenge1 />
 				)}
 				{step === 2 && (
-					<img src={'./Snap.png'} ></img>
+					<Challenge1 />
 				)}
-				<div><p className='text-neutral-600 text-sm mt-10'>Created by JaviSan. View the code at <a className="font-bold" href="https://github.com/Tigreton-dev/react-challenges">GitHub</a></p>
+				{step === 3 && (
+					<Code />
+				)}
+				<div><p className='text-neutral-600 text-sm mt-10 pb-10'>Created by JaviSan. View the code at <a className="font-bold" href="https://github.com/Tigreton-dev/react-challenges">GitHub</a></p>
 				</div>
 			</div>
 		</div >
