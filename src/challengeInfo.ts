@@ -1,6 +1,5 @@
 export const challenge1 = `
-<pre><code>
-/**
+<pre><code>/**
  * 🇬🇧
  * Given this API:
  *  - https://openlibrary.org/developers/api - Open Library API
