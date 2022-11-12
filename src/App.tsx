@@ -1,31 +1,24 @@
-import { useEffect, useState } from 'react'
-import { challenge1 } from './challenges/challengeInfo'
-import Challenge1 from './challenges/Challenge1'
-import Code from './components/Code'
+import { useState } from 'react'
 import Menu from './components/Menu'
-import ButtonSwitch from './challenges/ButtonsSwitch'
+import ButtonSwitch from './components/ButtonsSwitch'
+import Footer from './components/Footer'
+import Content from './components/Content'
 
 function App() {
 	const [step, setStep] = useState(0)
+	const [challenge, setChallenge] = useState('challenge2')
 
-	useEffect(() => {
-		const element = document.getElementById('aa');
-		if (step === 0 && element !== null) element.innerHTML = challenge1
-	}, [step])
+	const MenuHandler = (e:string) => {
+		setChallenge(e)
+	}
 
 	return (
 		<div className=" flex max-w-5xl h-full m-auto">
-			<Menu />
+			<Menu updateChallenge={(e:string) => MenuHandler(e)} />
 			<div className="grow">
 				<ButtonSwitch setStep={(val) => setStep(val)} />
-				{step === 0 && (
-					<div id='aa' className='min-h-[400px] text-left border-solid border border-neutral-800 text-white bg-black rounded-xl text-xs p-8'></div>
-				)}
-				{step === 1 && (<Challenge1 />)}
-				{step === 2 && (<Challenge1 />)}
-				{step === 3 && (<Code />)}
-				<div><p className='text-neutral-600 text-sm mt-10 pb-10 text-center'>Created by JaviSan. View the code at <a className="font-bold" href="https://github.com/Tigreton-dev/react-challenges">GitHub</a></p>
-				</div>
+				<Content step={step} challenge={challenge} />
+				<Footer />
 			</div>
 		</div >
 	)

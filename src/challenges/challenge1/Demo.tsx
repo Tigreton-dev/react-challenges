@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Challenge1 = () => {
+const Demo = () => {
     const [toggle, setToggle] = useState(false);
     const [text, setText] = useState("this is one text");
     const [counter, setCounter] = useState(0);
@@ -45,4 +45,4 @@ const Challenge1 = () => {
     );
 }
 
-export default Challenge1;
+export default Demo;

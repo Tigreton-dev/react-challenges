@@ -9,7 +9,6 @@ const ButtonSwitch = ({ setStep }: Props) => {
     const [selectedButton, setSelectedButton] = useState<Element | null>(null)
 
     useEffect(() => {
-        console.log(ref.current)
         setSelectedButton(ref.current)
     }, [])
 

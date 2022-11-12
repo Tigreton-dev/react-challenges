@@ -1,4 +1,4 @@
-export const challenge1 = `
+export const description = `
 <pre><code>/**
  * 🇬🇧
  * Given this API:
