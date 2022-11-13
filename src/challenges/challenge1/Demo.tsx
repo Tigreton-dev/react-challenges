@@ -19,28 +19,18 @@ const Demo = () => {
         const interval = setInterval(() => {
             setToggle(toggle => !toggle);
             setText(text => {
-                const value =
-                    text === "this is one text" ? "another text" : "this is one text";
-                return value;
+                const value = text === "this is one text" ? "another text" : "this is one text";
+                return value
             });
         }, 1000);
 
         return () => clearInterval(interval);
     }, []);
 
-    let style = {
-        color: "red"
-    };
-    if (!toggle) {
-        style = {
-            color: "black"
-        };
-    }
     return (
-        <div className="text-left border-solid border border-neutral-800 text-white bg-black rounded-xl text-xs p-8 min-h-[400px]">
-            <h1 style={style}>{counter}</h1>
+        <div className="text-6xl text-center border-solid border border-neutral-800 text-white bg-black rounded-xl p-8 min-h-[400px]">
+            <h1 style={toggle ? { color: 'red' } : { color: "white" }}>{counter}</h1>
             <h1>{text}</h1>
-            <h1 className="blink_me">CSS Blink</h1>
         </div>
     );
 }

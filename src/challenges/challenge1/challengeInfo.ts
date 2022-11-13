@@ -1,54 +1,50 @@
 export const description = `
-<h1 class='text-xl'>Blink Challenge</h1>
+<h1 class='text-xl'>Toggle Counter Challenge</h1>
 <pre><code>
 ------------------------------------------------------------------------------------------------
-Given this API: https://openlibrary.org/developers/api - Open Library API
-Create a way to input a text.
-Use Search API with the input to list the books found.
-We only want to show the title, first year published and,
-finally, the cover.
-
-Everything should be centered in the screen.
-The list of books should be horizontal and scrollable. 
-
-- Limit the results to 25.
-- Can we filter books with only one Edition Count?
-- Can we grab only the fields we need to optimize the network request?
-- Can we debounce the fetch of the data after input to avoid firing too much requests while 
-  typing?
+- Render a counter that increments every 1 second and resets when it reaches 10.
+- Render a text that alternates its content every 1 second.
+- Alternates the color of the counter every 1 second.
 </pre></code>
 `;
 
 export const code = `
-import { useState } from 'react'
+import React, { useState, useEffect } from "react";
 
-type CopiedValue = string | null
-type CopyFn = (text: string) => Promise<boolean> // Return success
+const Toggle = () => {
+    const [toggle, setToggle] = useState(false);
+    const [text, setText] = useState("this is one text");
+    const [counter, setCounter] = useState(0);
 
-function useCopyToClipboard(): [CopiedValue, CopyFn] {
-  const [copiedText, setCopiedText] = useState<CopiedValue>(null)
+    //COUNTER EVERY 1 SECOND
+    useEffect(() => {
+        const interval = setInterval(() => {
+            counter < 10 ? setCounter(counter + 1) : setCounter(0);
+        }, 1000);
 
-  const copy: CopyFn = async text => {
+        return () => clearInterval(interval);
+    }, [counter]);
 
-    if (!navigator?.clipboard) {
-      console.warn('Clipboard not supported')
-      return false
-    }
+    //TOGGLE EVERY 1 SECOND
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setToggle(toggle => !toggle);
+            setText(text => {
+                const value = text === "this is one text" ? "another text" : "this is one text";
+                return value
+            });
+        }, 1000);
 
-    // Try to save to clipboard then save it in the state if worked
-    try {
-      await navigator.clipboard.writeText(text)
-      setCopiedText(text)
-      return true
-    } catch (error) {
-      console.warn('Copy failed', error)
-      setCopiedText(null)
-      return false
-    }
-  }
+        return () => clearInterval(interval);
+    }, []);
 
-  return [copiedText, copy]
+    return (
+        <div className="text-6xl text-center border-solid border border-neutral-800 text-white bg-black rounded-xl p-8 min-h-[400px]">
+            <h1 style={toggle ? { color: 'red' } : { color: "white" }}>{counter}</h1>
+            <h1>{text}</h1>
+        </div>
+    );
 }
 
-export default useCopyToClipboard
+export default Toggle;
 `.trim();

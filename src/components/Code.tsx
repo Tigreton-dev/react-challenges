@@ -2,7 +2,7 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import vsDark from 'prism-react-renderer/themes/vsDark';
 
 const Code = ({code}) => (
-	<div className="bg-black p-4 rounded-xl border-solid border border-neutral-800 text-[13px]">
+	<div className="overflow-scroll max-w-[768px] bg-black p-4 rounded-xl border-solid border border-neutral-800 text-[13px]">
 		<Highlight {...defaultProps} theme={vsDark} code={code} language="tsx">
 			{({ className, style, tokens, getLineProps, getTokenProps }) => (
 				<pre className={className} style={{ textAlign: 'left', margin: '1em 0', padding: '0.5em', overflow: 'scroll' }}>
