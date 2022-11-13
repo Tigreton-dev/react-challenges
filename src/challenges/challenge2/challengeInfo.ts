@@ -1,54 +1,58 @@
 export const description = `
-<h1 class='text-xl'>Blink Challenge</h1>
+<h1 class='text-xl'>Menu Selector</h1>
 <pre><code>
 ------------------------------------------------------------------------------------------------
-Given this API: https://openlibrary.org/developers/api - Open Library API
-Create a way to input a text.
-Use Search API with the input to list the books found.
-We only want to show the title, first year published and,
-finally, the cover.
 
-Everything should be centered in the screen.
-The list of books should be horizontal and scrollable. 
-
-- Limit the results to 25.
-- Can we filter books with only one Edition Count?
-- Can we grab only the fields we need to optimize the network request?
-- Can we debounce the fetch of the data after input to avoid firing too much requests while 
-  typing?
+- Create a component with 4 buttons inside a box simulating a menu selector.
+- All buttons will have the same style.
+- Each time a button is pressed, the background color will change to indicate that the button is 
+  selected.
+- You can only have one button selected, so as soon as a button is selected, the previously 
+  selected button will lose the background color that indicated it was selected.
+- Below the selection box render a text that indicates the button that is selected.
 </pre></code>
 `;
 
 export const code = `
-import { useState } from 'react'
+import React, { useState, useEffect, useRef, ReactElement } from "react";
 
-type CopiedValue = string | null
-type CopyFn = (text: string) => Promise<boolean> // Return success
+const MenuSelector = () => {
+    const ref = useRef<HTMLButtonElement>(null);
+    const [selectedButton, setSelectedButton] = useState<Element | null>(null);
+    const [selector, setSelector] = useState<string | null>('');
 
-function useCopyToClipboard(): [CopiedValue, CopyFn] {
-  const [copiedText, setCopiedText] = useState<CopiedValue>(null)
+    useEffect(() => {
+        if (ref.current !== null) {
+            setSelectedButton(ref.current);
+            setSelector(ref.current.textContent);
+        }
+    }, [])
 
-  const copy: CopyFn = async text => {
-
-    if (!navigator?.clipboard) {
-      console.warn('Clipboard not supported')
-      return false
+    const clickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const target = e.target as HTMLButtonElement;
+        const textElement = target.textContent as string;
+        if (selectedButton !== null) {
+            selectedButton.classList.remove('bg-orange-700');
+            selectedButton.classList.add('bg-zinc-600');
+        }
+        target.classList.remove('bg-zinc-600');
+        target.classList.add('bg-orange-700');
+        setSelector(textElement);
+        setSelectedButton(target);
     }
 
-    // Try to save to clipboard then save it in the state if worked
-    try {
-      await navigator.clipboard.writeText(text)
-      setCopiedText(text)
-      return true
-    } catch (error) {
-      console.warn('Copy failed', error)
-      setCopiedText(null)
-      return false
-    }
-  }
-
-  return [copiedText, copy]
+    return (
+        <div className="text-left border-solid border border-neutral-800 text-white bg-black rounded-xl text-xs p-8 min-h-[400px]">
+            <div className="p-5 bg-zinc-800 rounded-md border border-stone-700 text-center font-bold">
+                <button ref={ref} className="p-5 bg-orange-700 rounded-md m-5" onClick={(e) => clickHandler(e)}>Selector 1</button>
+                <button className="p-5 bg-zinc-600 rounded-md m-5" onClick={(e) => clickHandler(e)}>Selector 2</button>
+                <button className="p-5 bg-zinc-600 rounded-md m-5" onClick={(e) => clickHandler(e)}>Selector 3</button>
+                <button className="p-5 bg-zinc-600 rounded-md m-5" onClick={(e) => clickHandler(e)}>Selector 4</button>
+            </div>
+            <p className="text-center m-5 text-xl">{selector}</p>
+        </div>
+    );
 }
 
-export default useCopyToClipboard
+export default MenuSelector;
 `.trim();
