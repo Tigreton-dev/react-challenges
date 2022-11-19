@@ -1,0 +1,65 @@
+.form {
+    font-family: sans-serif;
+    text-align: left;
+    position: relative;
+    border: 1px solid rgb(38 38 38);
+    color: white;
+    background-color: black;
+    border-radius: 0.75rem;
+    padding: 20px;
+    min-height: 400px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+}
+h1 {
+  font-size: 24px;
+  text-align: center;
+}
+input, select, textarea {
+    background-color: white;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    color: white;
+    background-color: rgb(38 38 38);
+    border-radius: 3px;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+.submit-button {
+    width: 160px;
+    padding: 8px 5px;
+    background-color: rgb(37 99 235);
+    font-weight: bold;
+    border-radius: 3px;
+}
+.radio {
+    border: 1px solid rgb(38 38 38);
+    margin: 10px 0px;
+    text-align: left;
+    padding: 10px;
+}
+.radio input {
+  width: 30px;
+}
+
+.errorMsg {
+  font-size: 12px;
+  color:rgb(122, 58, 58);
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
+.error {
+  border: 1px solid rgb(122, 58, 58);
+}
+.correct {
+  border: 1px solid rgb(86, 127, 86);
+}
+.errorFinal {
+  border: 2px solid red;
+}
+.correctFinal {
+  border: 2px solid green;
+}
