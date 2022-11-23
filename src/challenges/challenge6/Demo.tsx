@@ -1,15 +1,52 @@
 import React, { useRef, useState } from "react";
 import "./Demo.css";
 
-const patternMismatchText = 'value does not match the specified pattern'
-const rangeOverflowText = 'value is greater than the maximum specified'
-const rangeUnderflowText = ' value is less than the minimum specified'
-const stepMismatchText = 'value does not fit the rules determined by the step attribute'
-const tooLongText = 'value exceeds the specified maxlength'
-const tooShortText = 'value fails to meet the specified minlength'
-const typeMismatchText = 'value is not in the required syntax (when type is email or url)'
-const valueMissingText = 'value that is true if the element has a required attribute'
-const defaultInputText = ''
+// -------------------------- CUSTOM ERROR MSG -----------------------------
+
+// const patternMismatchText = 'value does not match the specified pattern'
+// const rangeOverflowText = 'value is greater than the maximum specified'
+// const rangeUnderflowText = ' value is less than the minimum specified'
+// const stepMismatchText = 'value does not fit the rules determined by the step attribute'
+// const tooLongText = 'value exceeds the specified maxlength'
+// const tooShortText = 'value fails to meet the specified minlength'
+// const typeMismatchText = 'value is not in the required syntax (when type is email or url)'
+// const valueMissingText = 'value that is true if the element has a required attribute'
+// const defaultInputText = ''
+
+// const setCustomMsg = (input: HTMLInputElement) => {
+//     const validityState = input.validity;
+//     if (validityState.patternMismatch) {
+//         input.setCustomValidity(patternMismatchText);
+//     } else if (validityState.rangeOverflow) {
+//         input.setCustomValidity(rangeOverflowText);
+//     } else if (validityState.rangeUnderflow) {
+//         input.setCustomValidity(rangeUnderflowText);
+//     } else if (validityState.stepMismatch) {
+//         input.setCustomValidity(stepMismatchText);
+//     } else if (validityState.tooLong) {
+//         input.setCustomValidity(tooLongText);
+//     } else if (validityState.tooShort) {
+//         input.setCustomValidity(tooShortText);
+//     } else if (validityState.typeMismatch) {
+//         input.setCustomValidity(typeMismatchText);
+//     } else if (validityState.valueMissing) {
+//         input.setCustomValidity(valueMissingText);
+//     } else {
+//         input.setCustomValidity(defaultInputText);
+//     }
+//     input.reportValidity();
+// }
+interface form {
+    FirstName: string;
+    LastName: string;
+    Email: string;
+    Mobile: string;
+    Title: string;
+    isTrue: string;
+    List: string;
+    Date: string;
+    Area: string;
+}
 
 export default function Demo() {
     const formRef = useRef(null)
@@ -42,7 +79,7 @@ export default function Demo() {
     };
 
     const inputHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        validateInput(e.target)
+        validateInput(e.target, 'correct', 'error')
         const { name, value } = e.target;
         setForm(form => {
             return {
@@ -52,65 +89,22 @@ export default function Demo() {
         });
     };
 
-    const validateInput = (e: HTMLInputElement) => {
-        const isValidInput = e.checkValidity()
+    const validateInput = (e: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement, correctClass: string, errorClass: string) => {
+        if (!e.checkValidity) return
         e.classList.remove('errorFinal')
         e.classList.remove('correctFinal')
-        if (isValidInput) {
-            e.classList.remove('error')
-            e.classList.add('correct')
-        } else {
-            e.classList.remove('correct')
-            e.classList.add('error')
-        }
-    }
-
-    const validateInput2 = (e: HTMLInputElement) => {
-        if (!e.checkValidity) return
         const isValidInput = e.checkValidity()
-        if (isValidInput) {
-            e.classList.remove('errorFinal')
-            e.classList.add('correctFinal')
-        } else {
-            e.classList.remove('correctFinal')
-            e.classList.add('errorFinal')
-        }
-    }
-
-    const setCustomMsg = (input: HTMLInputElement) => {
-        const validityState = input.validity;
-
-        if (validityState.patternMismatch) {
-            input.setCustomValidity(patternMismatchText);
-        } else if (validityState.rangeOverflow) {
-            input.setCustomValidity(rangeOverflowText);
-        } else if (validityState.rangeUnderflow) {
-            input.setCustomValidity(rangeUnderflowText);
-        } else if (validityState.stepMismatch) {
-            input.setCustomValidity(stepMismatchText);
-        } else if (validityState.tooLong) {
-            input.setCustomValidity(tooLongText);
-        } else if (validityState.tooShort) {
-            input.setCustomValidity(tooShortText);
-        } else if (validityState.typeMismatch) {
-            input.setCustomValidity(typeMismatchText);
-        } else if (validityState.valueMissing) {
-            input.setCustomValidity(valueMissingText);
-        } else {
-            input.setCustomValidity(defaultInputText);
-        }
-
-        input.reportValidity();
+        isValidInput ? e.classList.add(correctClass) : e.classList.add(errorClass)
     }
 
     const validateForm = () => {
-        const formElement:HTMLInputElement = formRef.current!
+        const formElement: HTMLInputElement = formRef.current!
         if (formElement !== null) {
             const inputs = Array.from(formElement.children)
-            const updateTexts = {}
+            const updateTexts = {} as form
             for (const input of inputs) {
                 const a = input as HTMLInputElement
-                validateInput2(a)
+                validateInput(a, 'correctFinal', 'errorFinal')
                 if (a.name) {
                     // setCustomMsg(input)
                     updateTexts[a.name] = a.validationMessage
@@ -118,7 +112,6 @@ export default function Demo() {
             }
             setMsg({ ...updateTexts })
         }
-
     }
 
     return (
