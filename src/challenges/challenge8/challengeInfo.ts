@@ -1,80 +1,75 @@
 export const description = `
-<h1 class='text-xl'>Form</h1>
+<h1 class='text-xl'>Grid</h1>
 <pre><code>
 ------------------------------------------------------------------------------------------------
 
-Create a Toggle button
+Create a 20*20 grid that when clicked on a cell it will change the background color.
+Every cell will have size of: 
+- width: 30px 
+- height: 30px
 </pre></code>
 `;
 
 export const code = `
-.toggle {
-    text-align: left;
+.grid {
     position: relative;
     border: 1px solid rgb(38 38 38);
     color: white;
     background-color: black;
     border-radius: 0.75rem;
     padding: 20px;
+    height: 100%;
     min-height: 400px;
+    justify-content: center;
     display: flex;
 }
-.toggle-containerX {
-    width: 100px;
-    height: 50px;
-    margin: auto;
-    display: flex;
+.row {
+    height: 100%;
     cursor: pointer;
-    border-radius: 100px;
-    background: rgb(144, 144, 144);
-    border: 6px solid rgb(144, 144, 144);
-    box-sizing:content-box;
-    transition: all 0.8s;
 }
-.toggle-container {
-    width: 100%;
-    height: 100%;
-}
-.toggle-container div {
-    width: 50%;
-    height: 100%;
-    background: rgb(38 38 38);
-    transform: translateX(0%);
-    border-radius: 100%;
-    transition: all 0.5s;
+.cell {
+    border: 1px solid white;
 }
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Demo.css";
 
-export default function Toggle() {
-    const toggleRef = useRef<HTMLInputElement>(null)
-    const toggleContainerRef = useRef<HTMLInputElement>(null)
-    const [toggle, setToggle] = useState(false)
+const BOARD_SIZE = 20;
+// Returns an array [0, 1, 2, ..., length-1]
+const range = (length: number) => Array.from({ length: length }, (_, i) => i)
 
-    const toggleHandler = () => {
-        if (toggle) {
-            setToggle(false)
-            toggleRef.current!.style.transform = 'translateX(0%)'
-            toggleContainerRef.current!.style.border = '6px solid rgb(144, 144, 144)'
-            toggleContainerRef.current!.style.background = 'rgb(144, 144, 144)'
-        } else {
-            setToggle(true)
-            toggleRef.current!.style.transform = 'translateX(100%)'
-            toggleContainerRef.current!.style.border = '6px solid rgb(37 99 235)'
-            toggleContainerRef.current!.style.background = 'rgb(37 99 235)'
-        }
+export default function Grid() {
+    const containerRef = useRef<HTMLDivElement>(null)
+    const [gridRange, setGridRange] = useState<number[][]>([[1]])
+
+    useEffect(() => {
+        // - SET THE ROW AND CELLS OF THE BOARD
+        const board = range(BOARD_SIZE).map(e => range(BOARD_SIZE))
+        setGridRange(board)
+    }, [])
+
+    const cellHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const target = e.target as HTMLDivElement
+        target.style.background = 'green'
     }
 
     return (
-        <div className="toggle">
-            <div className="toggle-containerX" ref={toggleContainerRef} onClick={toggleHandler}>
-                <div className="toggle-container">
-                    <div ref={toggleRef}></div>
-                </div>
-            </div>
+        <div className="grid" ref={containerRef}>
+            {gridRange!.map((row, rowIdx) => {
+                return (
+                    <div key={rowIdx} className="row">
+                        {row.map((cell, cellIdx) => (
+                            <div
+                                key={cellIdx}
+                                className='cell'
+                                style={{ height: '30px', width: '30px' }}
+                                onClick={e => cellHandler(e)}
+                            ></div>
+                        ))}
+                    </div>
+                );
+            })}
         </div>
     );
 }
-
 `.trim();
