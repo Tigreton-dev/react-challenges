@@ -1,0 +1,19 @@
+.grid {
+    position: relative;
+    border: 1px solid rgb(38 38 38);
+    color: white;
+    background-color: black;
+    border-radius: 0.75rem;
+    padding: 20px;
+    height: 100%;
+    min-height: 400px;
+    justify-content: center;
+    display: flex;
+}
+.row {
+    height: 100%;
+    cursor: pointer;
+}
+.cell {
+    border: 1px solid white;
+}
