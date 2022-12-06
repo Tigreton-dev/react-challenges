@@ -12,6 +12,7 @@ const Menu = ({updateChallenge}) => {
             <p onClick={() => updateChallenge('challenge7')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Toggle</p>
             <p onClick={() => updateChallenge('challenge8')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Grid</p>
             <p onClick={() => updateChallenge('challenge9')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>React Events State</p>
+            <p onClick={() => updateChallenge('challenge10')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Fetch data</p>
         
         </div>
     )
