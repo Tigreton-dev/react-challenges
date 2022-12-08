@@ -23,7 +23,7 @@ projects. Actually, the interviewer is expecting
 `;
 
 export const code = `
-.fetchData {
+.reactContext {
     position: relative;
     border: 1px solid rgb(38 38 38);
     color: white;
@@ -37,113 +37,137 @@ export const code = `
     justify-content: center;
     flex-direction: column;
 }
-
-/**
- * GET JSON DATA
- * 
- * @param url 
- * @returns 
- */
-export async function getData(url: string) {
-    const response = await fetch(url);
-    if (!response.ok)
-        throw new Error('An error has occurred: + response.status');
-    const data = await response.json();
-    return data;
+.reactContext .Component {
+    border: 1px solid white;
+    margin: 20px;
+    padding: 10px;
 }
 
-/**
- * UPLOAD JSON DATA
- * 
- * @param url 
- * @param data 
- * @returns 
- */
-export async function postData(url: string, data: Blob) {
-    const request = {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-            "Content-Type": "application/json",
-        },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(data), // body data type must match "Content-Type" header
-    };
-    const response = await fetch(url, request);
-    if (!response.ok)
-        throw new Error('An error has occurred: + response.status');
-    const responseData = response.json();
-    return responseData;
+.reactContext button {
+    background: rgb(37 99 235);
+    padding: 5px;
+    border-radius: 5px;
 }
 
-/**
- * GET AN IMAGE
- * 
- * @param imageUrl 
- * @returns 
- */
-export async function getImage(imageUrl: string) {
-    const response = await fetch(imageUrl);
-    if (!response.ok)
-        throw new Error('An error has occurred: + response.status');
-    const imageBlob = await response.blob();
-    return imageBlob;
+import * as React from 'react'
+import { DataContext } from '../Context'
+import { DataContextType } from '../@types.data'
+import ComponentB from './ComponentB'
+
+function ComponentA() {
+    const { data, updateData } = React.useContext(DataContext) as DataContextType
+
+    const clickHandler = () => {
+        updateData({...data, dataA: 'Global data used in component A UPDATED!!!'})
+    }
+
+    return (
+        <div className="Component">
+            <h1>This is component A</h1>
+            <h3>{data.dataA}</h3>
+            <button onClick={clickHandler}>update Data</button>
+            <ComponentB />
+        </div>
+    )
 }
 
-import React, { useEffect, useState } from "react";
-import { getData, postData, getImage } from './fetchData'
+export default ComponentA
+
+import * as React from 'react'
+import { DataContext } from '../Context'
+import { DataContextType } from '../@types.data'
+import ComponentC from './ComponentC'
+
+function ComponentB() {
+    const { data, updateData } = React.useContext(DataContext) as DataContextType
+
+    const clickHandler = () => {
+        updateData({...data, dataB: 'Global data used in component B UPDATED!!!'})
+    }
+
+    return (
+        <div className="Component">
+            <h1>This is component B </h1>
+            <h3>{data.dataB}</h3>
+            <button onClick={clickHandler}>update Data</button>
+           <ComponentC />
+        </div>
+    )
+}
+
+export default ComponentB
+
+import * as React from 'react'
+import { DataContext } from '../Context'
+import { DataContextType } from '../@types.data'
+
+function ComponentC() {
+    const { data, updateData } = React.useContext(DataContext) as DataContextType
+
+    const clickHandler = () => {
+        updateData({...data, dataC: 'Global data used in component C UPDATED!!!'})
+    }
+
+    return (
+        <div className="Component">
+            <h1>This is component C</h1>
+            <h3>{data.dataC}</h3>
+            <button onClick={clickHandler}>update Data</button>
+        </div>
+    )
+}
+
+export default ComponentC
+
+import * as React from 'react'
+import { DataContextType, IData } from './@types.data'
+
+export const DataContext = React.createContext<DataContextType | null>(null)
+
+const defaultState: IData = {
+    dataA: 'Global data used in component A',
+    dataB: 'Global data used in component B',
+    dataC: 'Global data used in component C',
+}
+
+interface Props {
+    children: React.ReactNode;
+}
+
+const DataProvider: React.FC<Props> = ({ children }) => {
+    const [data, setData] = React.useState<IData>(defaultState)
+
+    function updateData(payload: object) {
+        setData((data) => {
+            return {
+                ...data,
+                ...payload,
+            }
+        })
+    }
+
+    return (
+        <DataContext.Provider value={{ data, updateData }}>
+            {children}
+        </DataContext.Provider>
+    )
+}
+
+export default DataProvider
+
+
+import * as React from 'react'
+import DataProvider from './Context'
+import ComponentA from './components/ComponentA'
 import "./Demo.css";
 
 export default function Demo() {
-    const [users, setUsers] = useState<Array<any> | null>(null)
-    const [image, setImage] = useState<Blob | null>(null)
-
-    const fetchData = async (url: string) => {
-        try {
-            const data = await getData(url);
-            setUsers(data.results)
-        } catch (error) {
-            console.error("An error has ocurred: " + error.message);
-        }
-    };
-
-    const fetchImageData = async (url: string) => {
-        try {
-            const image = await getImage(url);
-            setImage(image)
-        } catch (error) {
-            console.error("An error has ocurred: " + error.message);
-        }
-    };
-
-    const sendData = async (url: string, payload: object) => {
-        try {
-            const sendData = await postData(url, payload);
-            console.log(sendData);
-        } catch (error) {
-            console.error("An error has ocurred: " + error.message);
-        }
-    };
-
-    useEffect(() => {
-        fetchData('https://randomuser.me/api/?results=20');
-        fetchImageData('https://i.picsum.photos/id/566/200/300.jpg?hmac=gDpaVMLNupk7AufUDLFHttohsJ9-C17P7L-QKsVgUQU');
-        // sendData("https://api.github.com/gists", {})
-    }, [])
-
-    if (users === null || image === null) return <div className="fetchData">loading...</div>
 
     return (
-        <div className="fetchData">
-            {users.map(user => {
-                return (
-                    <p key={user.email}>{user.name.first}</p>
-                )
-            })}
-            <img alt="" src={URL.createObjectURL(image)} width="auto" height='auto' />
+        <div className="reactContext">
+            <DataProvider>
+                <ComponentA />
+            </DataProvider>
         </div>
     );
 }
