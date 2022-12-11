@@ -1,0 +1,45 @@
+.API {
+    position: relative;
+    border: 1px solid rgb(38 38 38);
+    color: white;
+    background-color: black;
+    border-radius: 0.75rem;
+    padding: 20px;
+    height: 100%;
+    min-height: 400px;
+}
+.API h1 {
+    font-size: 22px;
+}
+
+.API input {
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.API-info {
+    display: flex;
+    justify-content: center;
+}
+.API-info div{
+    border: 1px solid white;
+    padding: 10px;
+
+}
+
+.API section {
+    text-align: center;
+}
+
+.API ul {
+    width: 300px;
+}
+.API li {
+    cursor: pointer;
+}
+.API li:hover {
+    background-color: red;
+}
