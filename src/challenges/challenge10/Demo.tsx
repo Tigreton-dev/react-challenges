@@ -20,7 +20,7 @@ export default function Demo() {
         getData(GET_DATA_URL).then(data => setUsers(data.results)).catch(handleError)
         getImage(GET_IMAGE_URL).then(setImage).catch(handleError)
         const payload = {}
-        postData(POST_DATA_URL, payload).then((response) => console.log(response)).catch(handleError)
+        // postData(POST_DATA_URL, payload).then((response) => console.log(response)).catch(handleError)
     }, [])
 
     const handleError = (err:any) => {

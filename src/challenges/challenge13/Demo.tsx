@@ -10,7 +10,7 @@ function App() {
     const [currentCharacter, setCurrentCharacter] = useState(1)
     const [details, setDetails] = useState({})
     const [page, setPage] = useState(1)
-    const [errorState, setErrorState] = useState({ hasError: false })
+    const [errorState, setErrorState] = useState({ hasError: false, message: "" })
 
     useEffect(() => {
         getPeople(page).then(setPeople).catch(handleError)
@@ -20,7 +20,7 @@ function App() {
         getCharacter(currentCharacter).then(setDetails).catch(handleError)
     }, [currentCharacter])
 
-    const handleError = (err) => {
+    const handleError = (err:any) => {
         setErrorState({ hasError: true, message: err.message })
     }
 
@@ -29,23 +29,23 @@ function App() {
         setCurrentCharacter(id)
     }
 
-    const onChangeTextSearch = (event) => {
+    const onChangeTextSearch = (event:React.KeyboardEvent<HTMLInputElement>) => {
         event.preventDefault()
-        const text = inputSearch.current.value
+        const text = inputSearch.current?.value
         setTextSearch(text)
     }
 
-    const onSearchSubmit = (event) => {
+    const onSearchSubmit = (event:React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key !== 'Enter') return
+
         inputSearch.current.value = ''
         setDetails({})
         searchCharacter(textSearch).then(setPeople).catch(handleError)
     }
 
-    const onChangePage = (next) => {
+    const onChangePage = (next:number) => {
         if (!people.previous && page + next <= 0) return
         if (!people.next && page + next >= 9) return
-
         setPage(page + next)
     }
 
