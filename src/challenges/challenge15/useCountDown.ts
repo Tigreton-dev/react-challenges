@@ -2,16 +2,18 @@ import { useEffect, useRef, useState } from "react";
 
 export const useCountDown: (
     ms?: number
-) => [number, () => void, () => void, () => void] = (ms: number = 1000) => {
-    const [initVal, setInitVal] = useState(0)
+) => [number, (number: number) => void, () => void, () => void, () => void] = (
+    ms: number = 1000
+) => {
+    const [initVal, setInitVal] = useState(0);
     const [counter, setCountDown] = useState(0);
     const [startCountDown, setStartCountDown] = useState(false);
-    // Store the created interval
+
     const intervalId = useRef<number>();
     const set: (val: number) => void = (val: number) => {
         setCountDown(val);
-        setInitVal(val)
-    }
+        setInitVal(val);
+    };
     const start: () => void = () => setStartCountDown(true);
     const pause: () => void = () => setStartCountDown(false);
     const reset: () => void = () => {
