@@ -1,4 +1,4 @@
-.CenterElements {
+.InfiniteScroll {
     text-align: left;
     position: relative;
     border: 1px solid rgb(38 38 38);
@@ -11,41 +11,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
-.CenterElements .screen {
-    border: 1px solid red;
-    width: 50%;
-    text-align: center;
-    font-size: 55px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-.CenterElements .container {
-    width: 50%;
-    display: grid; 
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr; 
-    grid-template-rows: 1fr 1fr; 
-    gap: 8px 8px; 
-    grid-template-areas: 
-      ". . . . . ."
-      ". . . . . ."; 
-}
-.CenterElements .container button {
-    border: 1px solid red;
-    border-radius: 5px;
-    font-size: 22px;
-}
-
-
-
-
-
-
-
-.show-counter {
-    display: flex;
-}
-.show-counter div {
-    text-align: center;
-    width: 60px;
+    max-height: 200px;
+    overflow: scroll;
 }

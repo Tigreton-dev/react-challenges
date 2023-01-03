@@ -13,7 +13,7 @@ add reset button to reset the countdown.
 The countDown should work as follow:
 - when introduce numbers, it will start from left to right "from seconds to days"
 - when clicked to set button it will transform the values on the display to correct DD:HH:MM:SS format.
-- When clicked to start it will start de countdwon and if stop is cliked it will pause it.
+- When clicked to start it will start de countdown and if stop is clicked it will pause it.
 - the reset button will reset the value with the value that was set.
 - The clear button will clear de countDown to their initial value 00:00:00:00
 </pre></code>

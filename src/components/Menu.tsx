@@ -18,7 +18,8 @@ const Menu = ({updateChallenge}) => {
             <p onClick={() => updateChallenge('challenge13')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>API</p>
             <p onClick={() => updateChallenge('challenge14')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Lazy Loading Component</p>
             <p onClick={() => updateChallenge('challenge15')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Count Down</p>
-        
+            <p onClick={() => updateChallenge('challenge16')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Infinite Scroll</p>
+            <p onClick={() => updateChallenge('challenge17')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Debounce</p>
         </div>
     )
 }
