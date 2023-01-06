@@ -1,0 +1,42 @@
+.tikTakToeContainer {
+    text-align: left;
+    position: relative;
+    border: 1px solid rgb(38 38 38);
+    color: white;
+    background-color: black;
+    border-radius: 0.75rem;
+    padding: 20px;
+    overflow: scroll;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.tikTakToeContainer h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.tikTakToeContainer .tikTakToe {
+    width: 50%;
+    display: grid;
+    margin-bottom: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px 20px;
+    grid-template-areas:
+        ". . ."
+        ". . ."
+        ". . .";
+}
+.tikTakToeContainer button {
+    font-size: 50px;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 1px solid red;
+    border-radius: 8px;
+}
+#tikTakToe-restart {
+  font-size: 20px;
+  width:150px;
+  height: 80px;
+}

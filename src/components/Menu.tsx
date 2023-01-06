@@ -20,6 +20,7 @@ const Menu = ({updateChallenge}) => {
             <p onClick={() => updateChallenge('challenge15')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Count Down</p>
             <p onClick={() => updateChallenge('challenge16')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Infinite Scroll</p>
             <p onClick={() => updateChallenge('challenge17')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Debounce</p>
+            <p onClick={() => updateChallenge('challenge18')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Tic Tac Toe</p>
         </div>
     )
 }
