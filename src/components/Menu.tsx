@@ -22,6 +22,9 @@ const Menu = ({updateChallenge}) => {
             <p onClick={() => updateChallenge('challenge17')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Debounce</p>
             <p onClick={() => updateChallenge('challenge18')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Tic Tac Toe</p>
             <p onClick={() => updateChallenge('challenge19')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Memory</p>
+            <p onClick={() => updateChallenge('challenge20')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Wordle</p>
+            <p onClick={() => updateChallenge('challenge21')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Connect Four</p>
+        
         </div>
     )
 }
