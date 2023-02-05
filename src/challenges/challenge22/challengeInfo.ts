@@ -1,3 +1,65 @@
+export const description = `
+<h1 class='text-xl'>Connect four</h1>
+<pre><code>
+------------------------------------------------------------------------------------------------
+
+
+connect four...
+
+
+</pre></code>
+`;
+
+export const code = `
+.connectFour {
+    position: relative;
+    border: 1px solid rgb(38 38 38);
+    color: white;
+    background-color: black;
+    border-radius: 0.75rem;
+    padding: 20px;
+    overflow: scroll;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.connectFour-container {
+    display: flex;
+}
+.connectFour-col {
+    height: 100%;
+    width: 50px;
+}
+.connectFour-row {
+    height: 50px;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+.connectFour button {
+    background: red;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+.circleRed {
+    width: 30px;
+    height: 30px;
+    background: red;
+    border-radius: 50%;
+}
+.circleBlue {
+    width: 30px;
+    height: 30px;
+    background: blue;
+    border-radius: 50%;
+}
+
+
 import React, { useRef, useState } from "react";
 import "./Demo.css";
 
@@ -31,7 +93,6 @@ export default function Demo() {
             currentPlayer.current = currentPlayer.current === 1 ? 2 : 1
         }
     }
-    
 
     const resetHandler = () => {
         rowsIndex.current = [6, 6, 6, 6, 6, 6]
@@ -89,3 +150,4 @@ function didWin(startingRow: number, startingCol: number, rowIncrement: number, 
     }
     return numInARow >= NUM_TO_WIN;
 }
+`.trim();
