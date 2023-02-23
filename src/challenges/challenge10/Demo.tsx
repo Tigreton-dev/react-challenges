@@ -3,7 +3,7 @@ import { getData, postData, getImage } from './fetchData'
 import "./Demo.css";
 
 const GET_DATA_URL = 'https://randomuser.me/api/?results=20';
-const GET_IMAGE_URL = 'https://i.picsum.photos/id/566/200/300.jpg?hmac=gDpaVMLNupk7AufUDLFHttohsJ9-C17P7L-QKsVgUQU'
+const GET_IMAGE_URL = 'https://picsum.photos/200'
 const POST_DATA_URL = 'https://api.github.com/gists'
 
 interface error {
