@@ -3,13 +3,14 @@ export const description = `
 <pre><code>
 ------------------------------------------------------------------------------------------------
 
-The route https://robohash.org/ is a url that generates images of robots based on a text. Enter 
-any text after the url, and get a picture of a robot.
+The route https://robohash.org/ is a url that generates images of robots based on a text. 
 
-- Create an input element that when given accept, adds that text to a list.
-- Said list must be rendered as images with the src of the url + the text of the list.
-- Images must be rendered in columns of 3 images maximum.
-- when clicking on an image, it should be removed from the list and disappear.
+Enter any text after the url, and get a picture of a robot.
+
+✅ Create an input element that when given accept, adds that text to a list.
+✅ Said list must be rendered as images with the src of the url + the text of the list.
+✅ Images must be rendered in columns of 3 images maximum.
+✅ when clicking on an image, it should be removed from the list and disappear.
 </pre></code>
 `;
 

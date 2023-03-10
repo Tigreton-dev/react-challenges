@@ -3,13 +3,13 @@ export const description = `
 <pre><code>
 ------------------------------------------------------------------------------------------------
 
-- Create a component with 4 buttons inside a box simulating a menu selector.
-- All buttons will have the same style.
-- Each time a button is pressed, the background color will change to indicate that the button is 
+✅ Create a component with 4 buttons inside a box simulating a menu selector.
+✅ All buttons will have the same style.
+✅ Each time a button is pressed, the background color will change to indicate that the button is 
   selected.
-- You can only have one button selected, so as soon as a button is selected, the previously 
+✅ You can only have one button selected, so as soon as a button is selected, the previously 
   selected button will lose the background color that indicated it was selected.
-- Below the selection box render a text that indicates the button that is selected.
+✅ Below the selection box render a text that indicates the button that is selected.
 </pre></code>
 `;
 

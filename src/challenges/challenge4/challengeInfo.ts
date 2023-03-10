@@ -3,7 +3,7 @@ export const description = `
 <pre><code>
 ------------------------------------------------------------------------------------------------
 
-Create a div that can be resized by mouse drag on width and height size.
+✅ Create a div that can be resized by mouse drag on width and height size.
 </pre></code>
 `;
 

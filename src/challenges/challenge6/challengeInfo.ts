@@ -3,44 +3,44 @@ export const description = `
 <pre><code>
 ------------------------------------------------------------------------------------------------
 
-Create a form with a validation. When you click the submitted button, it will alert all the 
-inputs as a json file. The form will change all input borders to green when the input passes 
-validation and to red when it doesn't. In addition, a text will be displayed below the entry with 
-the validation error of the previous entry.
+✅ Create a form with a validation. 
+✅ When you click the submitted button, it will alert all the inputs as a json file. 
+✅ The form will change all input borders to green when the input passes validation and to red when it doesn't. 
+✅ In addition, a text will be displayed below the entry with the validation error of the previous entry.
 
 The following entries are:
 
-- name entry with the following requirements:
-    - max length = 10
-    - minLength= 3
-    - required
-- last name entry with the following requirements:
-    - max length = 10
-    - minLength= 3
-    - required
-- email input with email validation pattern
-    - required
-- number entry
-    - maxLength= 6
-    - minLength= 10
-    - required
-- date input
-    - maxLength= 10
-    - minLength= 3
-    - required
-- text area input
-    - required
-- input selector with the following list:
-    - Mister
-    - Mrs
-    - Miss
-    -dr
-- radio type with true and false input:
-    - maxLength= 10
-    - minLength= 3
-    - required
-- checkbox with two options.
-    - required
+∙ name entry with the following requirements:
+    ∙ max length = 10
+    ∙ minLength= 3
+    ∙ required
+∙ last name entry with the following requirements:
+    ∙ max length = 10
+    ∙ minLength= 3
+    ∙ required
+∙ email input with email validation pattern
+    ∙ required
+∙ number entry
+    ∙ maxLength= 6
+    ∙ minLength= 10
+    ∙ required
+∙ date input
+    ∙ maxLength= 10
+    ∙ minLength= 3
+    ∙ required
+∙ text area input
+    ∙ required
+∙ input selector with the following list:
+    ∙ Mister
+    ∙ Mrs
+    ∙ Miss
+    ∙ dr
+∙ radio type with true and false input:
+    ∙ maxLength= 10
+    ∙ minLength= 3
+    ∙ required
+∙ checkbox with two options.
+    ∙ required
 </pre></code>
 `;
 
