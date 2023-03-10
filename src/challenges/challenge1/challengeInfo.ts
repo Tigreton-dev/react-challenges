@@ -2,9 +2,9 @@ export const description = `
 <h1 class='text-xl'>Toggle Counter Challenge</h1>
 <pre><code>
 ------------------------------------------------------------------------------------------------
-- Render a counter that increments every 1 second and resets when it reaches 10.
-- Render a text that alternates its content every 1 second.
-- Alternates the color of the counter every 1 second.
+✅ Render a counter that increments every 1 second and resets when it reaches 10.
+✅ Render a text that alternates its content every 1 second.
+✅ Alternates the color of the counter every 1 second.
 </pre></code>
 `;
 

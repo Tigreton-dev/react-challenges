@@ -1,8 +1,20 @@
-function ListOfMovies({ movies }) {
+interface Imovie {
+    id: number;
+    title: string;
+    year: string;
+    image: string;
+}
+
+interface Iprops {
+    movies: Array<any>;
+}
+
+function ListOfMovies(props: Iprops) {
+    const { movies } = props
     return (
         <ul className='movies'>
             {
-                movies.map(movie => (
+                movies.map((movie: Imovie) => (
                     <li className='movie' key={movie.id}>
                         <h3>{movie.title}</h3>
                         <p>{movie.year}</p>
@@ -20,7 +32,8 @@ function NoMoviesResults() {
     )
 }
 
-export function Movies({ movies }) {
+export function Movies(props: Iprops) {
+    const { movies } = props;
     const hasMovies = movies?.length > 0
 
     return (
