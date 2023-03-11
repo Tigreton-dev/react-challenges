@@ -1,7 +1,6 @@
 import { useState, useMemo } from "react";
 
 // The useMemo Hook can be used to keep expensive, resource intensive functions from needlessly running.
-
 // In this example, we have an expensive function that runs on every render.
 
 // When changing the count or adding a todo, you will notice a delay in execution.
@@ -14,8 +13,8 @@ import { useState, useMemo } from "react";
 // In the following example, the expensive function will only run when count is changed and not when todo's are added.
 
 const Demo = () => {
-    const [count, setCount] = useState(0);
-    const [todos, setTodos] = useState([]);
+    const [count, setCount] = useState<number>(0);
+    const [todos, setTodos] = useState<Array<string>>([]);
 
     const calculation = useMemo(() => {
         console.log("Calculating...");
@@ -31,7 +30,7 @@ const Demo = () => {
     };
 
     const addTodo = () => {
-        setTodos((t) => [...t, "New Todo"]);
+        setTodos((t: Array<string>) => [...t, "New Todo"]);
     };
 
     return (
@@ -53,3 +52,5 @@ const Demo = () => {
         </div>
     );
 };
+
+export default Demo;
