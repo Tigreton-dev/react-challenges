@@ -1,41 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Demo.css";
 
-const BOARD_SIZE = 20;
-// Returns an array [0, 1, 2, ..., length-1]
-const range = (length: number) => Array.from({ length: length }, (_, i) => i)
+const range = (NUM_COL: number, NUM_ROW: number) => Array(NUM_COL).fill(null).map(() => Array(NUM_ROW).fill(null))
+const range2 = (length: number) => Array.from({ length: length }, (_, i) => i)
 
 export default function Demo() {
-    const containerRef = useRef<HTMLDivElement>(null)
-    const [gridRange, setGridRange] = useState<number[][]>([[1]])
+    const [grid, setGrid] = useState<Array<any>>([])
 
     useEffect(() => {
-        // - SET THE ROW AND CELLS OF THE BOARD
-        const board = range(BOARD_SIZE).map(e => range(BOARD_SIZE))
-        setGridRange(board)
+        setGrid(range(20, 20))
     }, [])
 
-    const cellHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        const target = e.target as HTMLDivElement
+    const clickHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const target = e.target as HTMLDialogElement
         target.style.background = 'green'
     }
 
     return (
-        <div className="grid" ref={containerRef}>
-            {gridRange!.map((row, rowIdx) => {
+        <div className="bg-black min-h-[400px] rounded-lg border border-neutral-800 text-white text-center text-sm font-bold p-8 flex justify-center items-center">
+            {grid.map((col) => {
                 return (
-                    <div key={rowIdx} className="row">
-                        {row.map((cell, cellIdx) => (
-                            <div
-                                key={cellIdx}
-                                className='cell'
-                                style={{ height: '30px', width: '30px' }}
-                                onClick={e => cellHandler(e)}
-                            ></div>
-                        ))}
+                    <div className="w-[25px] cursor-pointer">
+                        {col.map(() => <div className="border w-[25px] h-[25px]" onClick={(e) => clickHandler(e)}></div>)}
                     </div>
-                );
+                )
             })}
-        </div>
-    );
+        </div >
+    )
 }
