@@ -8,7 +8,7 @@ const Demo = () => {
         const interval = setInterval(() => {
             setCounter(counter => {
                 if (counter === 10) return 0;
-                return counter + 1;
+                return ++counter;
             })
         }, 1000);
 

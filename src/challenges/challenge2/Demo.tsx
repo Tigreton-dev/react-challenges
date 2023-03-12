@@ -6,19 +6,15 @@ const Demo = () => {
     const [selector, setSelector] = useState<string | null>('');
 
     useEffect(() => {
-        if (ref.current !== null) {
-            setSelectedButton(ref.current);
-            setSelector(ref.current.textContent);
-        }
+        setSelectedButton(ref.current);
+        setSelector(ref!.current!.textContent);
     }, [])
 
     const clickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const target = e.target as HTMLButtonElement;
         const textElement = target.textContent as string;
-        if (selectedButton !== null) {
-            selectedButton.classList.remove('bg-orange-700');
-            selectedButton.classList.add('bg-zinc-600');
-        }
+        selectedButton!.classList.remove('bg-orange-700');
+        selectedButton!.classList.add('bg-zinc-600');
         target.classList.remove('bg-zinc-600');
         target.classList.add('bg-orange-700');
         setSelector(textElement);

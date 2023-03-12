@@ -21,14 +21,15 @@ const Demo = () => {
                     onChange={(e) => setInput(e.target.value)}
                 />
             </form>
-            <div className="flex flex-row flex-wrap gap-4">
-                {robotList.map((robot) => (
-                    <div
-                        className="border border-neutral-800 p-2 rounded-md cursor-pointer w-[calc(33%_-_9px)]"
+            <div className="grid grid-cols-3 gap-4">
+                {robotList.map((robot, i) => (
+                    <img
+                        key={i}
+                        alt="img"
                         onClick={() => setRobotList(robotList.filter((r) => r !== robot))}
-                    >
-                        <img alt="img" src={`https://robohash.org/${robot}`} />
-                    </div>
+                        src={`https://robohash.org/${robot}`}
+                        className='border border-neutral-800 rounded-md cursor-pointer'
+                    />
                 ))}
             </div>
         </div>
