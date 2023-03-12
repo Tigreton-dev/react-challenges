@@ -1,54 +1,52 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 const Demo = () => {
-    const containerRef = useRef(null)
-    const [size, setSize] = useState({ x: 700, y: 350 })
+    const [size, setSize] = useState({ X: 700, Y: 400 })
 
-    const resizeWidth = (mouseDownEvent: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const resizeRightHandler = (mouseDownEvent: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         const startSize = size;
-        const startPosition = { x: mouseDownEvent.pageX };
+        const startPosition = { X: mouseDownEvent.pageX };
 
         function onMouseMove(mouseMoveEvent: MouseEvent) {
-            const updateValue = startSize.x - startPosition.x + mouseMoveEvent.pageX
+            const currentMousePosition = mouseMoveEvent.pageX - startPosition.X
+            const updateValue = startSize.X + currentMousePosition
             if (updateValue > 700) return
-            setSize({ x: updateValue, y: size.y });
+            setSize({ X: updateValue, Y: size.Y });
         }
 
         function onMouseUp() {
-            document.body.removeEventListener("mousemove", onMouseMove);
+            document.removeEventListener("mousemove", onMouseMove);
         }
 
-        document.body.addEventListener("mousemove", onMouseMove);
-        document.body.addEventListener("mouseup", onMouseUp, { once: true });
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp, { once: true });
     };
 
-    const resizeHeight = (mouseDownEvent: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        const startSize = size;
-        const startPosition = { y: mouseDownEvent.pageY };
+    const resizeUpHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const initialPosition = e.pageY
 
-        function onMouseMove(mouseMoveEvent: MouseEvent) {
-            setSize({ y: startSize.y - startPosition.y + mouseMoveEvent.pageY, x: size.x });
+        const onMouseMove = (e: MouseEvent) => {
+            const currentMousePosition = e.pageY - initialPosition
+            const updateValue = size.Y + currentMousePosition
+            setSize({ X: size.X, Y: updateValue })
         }
 
-        function onMouseUp() {
-            document.body.removeEventListener("mousemove", onMouseMove);
+        const onMouseUp = () => {
+            document.removeEventListener('mousemove', onMouseMove)
         }
 
-        document.body.addEventListener("mousemove", onMouseMove);
-        document.body.addEventListener("mouseup", onMouseUp, { once: true });
-    };
-
+        document.addEventListener('mousemove', onMouseMove)
+        document.addEventListener('mouseup', onMouseUp)
+    }
 
     return (
-        <div className="relative text-left border-solid border border-neutral-800 text-white bg-black rounded-xl text-xs p-8 min-h-[400px] max-w-[768px] overflow-scroll">
-            <div className="flex h-100%">
-                <div className="border-solid border-4 border-neutral-800" ref={containerRef} style={{ width: size.x, height: size.y }}>
-                    <p className="p-2 text-center">RESIZE DIV</p>
-                </div>
-                <div className="w-2 neutral-800  bg-neutral-800 rounded-md ml-1 cursor-col-resize relative" onMouseDown={resizeWidth} style={{ height: size.y / 2, transform: 'translateY(-50%)', top: size.y / 2 }}></div>
+        <div className="bg-black min-h-[400px] rounded-lg border border-neutral-800 text-white text-center text-sm font-bold p-8">
+            <div className="border-solid border-4 border-neutral-800 h-[300px] relative" style={{ width: size.X, height: size.Y }}>
+                <div onMouseDown={(e) => resizeRightHandler(e)} className="w-[8px] h-[50%] bg-neutral-800 rounded-md cursor-col-resize absolute right-[-15px] top-[50%] translate-y-[-50%]"></div>
+                <div onMouseDown={(e) => resizeUpHandler(e)} className="w-[50%] h-[8px] bg-neutral-800 rounded-md cursor-ns-resize absolute bottom-[-15px] left-[50%] translate-x-[-50%]"></div>
             </div>
-            <div className="h-2 neutral-800  bg-neutral-800 rounded-md mt-1 cursor-ns-resize relative" onMouseDown={resizeHeight} style={{ width: size.x / 2, transform: 'translateX(-50%)', left: size.x / 2 }}></div>
-        </div>
+        </div >
     )
 }
+
 export default Demo;
