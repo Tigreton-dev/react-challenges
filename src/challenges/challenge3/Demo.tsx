@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 const Demo = () => {
-    const [input, setInput] = useState("");
+    const inputValue = useRef('')
     const [robotList, setRobotList] = useState<Array<string>>(["a", "b", "c"]);
 
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault(); // prevents page refresh
-        setRobotList([...robotList, input]);
-        setInput("");
+        setRobotList([...robotList, inputValue.current]);
     };
 
     return (
@@ -15,10 +14,9 @@ const Demo = () => {
             <form onSubmit={onSubmit}>
                 <input
                     className="bg-zinc-800 border-0 p-2 rounded-sm mb-5 text-md font-bold focus:outline-none"
-                    value={input}
                     placeholder={"Add Robot"}
                     type="text"
-                    onChange={(e) => setInput(e.target.value)}
+                    onChange={(e) => inputValue.current = e.target.value}
                 />
             </form>
             <div className="grid grid-cols-3 gap-4">

@@ -10,7 +10,7 @@ export async function getData(url: string) {
         if (!response.ok) return _handleError(response.status);
         const data = await response.json();
         return data;
-    } catch (error:any) {
+    } catch (error: any) {
         throw new Error(error);
     }
 }
@@ -40,7 +40,7 @@ export async function postData(url: string, data: object) {
         if (!response.ok) return _handleError(response.status);
         const responseData = response.json();
         return responseData;
-    } catch (error:any) {
+    } catch (error: any) {
         throw new Error(error);
     }
 }
@@ -56,8 +56,9 @@ export async function getImage(imageUrl: string) {
         const response = await fetch(imageUrl);
         if (!response.ok) return _handleError(response.status);
         const imageBlob = await response.blob();
-        return imageBlob;
-    } catch (error:any) {
+        const imageObjectURL = URL.createObjectURL(imageBlob);
+        return imageObjectURL;
+    } catch (error: any) {
         throw new Error(error);
     }
 }
@@ -69,13 +70,13 @@ export async function getImage(imageUrl: string) {
  * @returns
  */
 function _handleError(status: number) {
-    if (status === 404) {
-        throw new Error("The resource you requested was not found.");
+    if (status >= 400 && status < 500) {
+        throw new Error("Client Error response");
     }
 
-    if (status === 500) {
-        throw new Error("There was a server error.");
+    if (status >= 500 && status < 600) {
+        throw new Error("Server error response");
     }
 
-    throw new Error('Something went wrong...')
+    throw new Error("Something went wrong...");
 }

@@ -13,7 +13,7 @@ interface error {
 
 export default function Demo() {
     const [users, setUsers] = useState<Array<any> | null>(null)
-    const [image, setImage] = useState<Blob | null | void>(null)
+    const [image, setImage] = useState<string | null>(null)
     const [errorState, setErrorState] = useState<error>({ hasError: false, message: "" })
 
     useEffect(() => {
@@ -23,13 +23,14 @@ export default function Demo() {
         // postData(POST_DATA_URL, payload).then((response) => console.log(response)).catch(handleError)
     }, [])
 
-    const handleError = (err:any) => {
+    const handleError = (err: any) => {
         setErrorState({ hasError: true, message: err.message })
     }
 
     if (users === null || image === null) return <div className="fetchData">loading...</div>
 
     return (
+        
         <div className="fetchData">
             {errorState.hasError && <div>{errorState.message}</div>}
             {users.map(user => {
@@ -37,7 +38,7 @@ export default function Demo() {
                     <p key={user.email}>{user.name.first}</p>
                 )
             })}
-            <img alt="" src={URL.createObjectURL(image)} width="auto" height='auto' />
+            <img alt="" src={image} width="auto" height='auto' />
         </div>
     );
 }
