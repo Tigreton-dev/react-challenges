@@ -4,7 +4,7 @@ export const description = `
 ------------------------------------------------------------------------------------------------
 Fetch data from: 
     - https://randomuser.me/
-    - https://i.picsum.photos/id/566/200/300.jpg?hmac=gDpaVMLNupk7AufUDLFHttohsJ9-C17P7L-QKsVgUQU
+    - https://picsum.photos/200
 
 
 From first url get 20 users and render the first name of each user.

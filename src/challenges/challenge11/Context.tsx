@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { DataContextType, IData } from './@types.data'
 
+
 export const DataContext = React.createContext<DataContextType | null>(null)
 
 const defaultState: IData = {

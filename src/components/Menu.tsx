@@ -15,20 +15,20 @@ const Menu = ({ updateChallenge }) => {
             <p onClick={() => updateChallenge('challenge10')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>10. Fetch data</p>
             <p onClick={() => updateChallenge('challenge11')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>11. React Context</p>
             <p onClick={() => updateChallenge('challenge12')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>12. React HOC</p>
-            <p onClick={() => updateChallenge('challenge13')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>13. API</p>
-            <p onClick={() => updateChallenge('challenge14')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>14. Lazy Loading Component</p>
-            <p onClick={() => updateChallenge('challenge15')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>15. Count Down</p>
-            <p onClick={() => updateChallenge('challenge16')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>16. Infinite Scroll</p>
-            <p onClick={() => updateChallenge('challenge17')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>17. Debounce</p>
-            <p onClick={() => updateChallenge('challenge18')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>18. Tic Tac Toe</p>
-            <p onClick={() => updateChallenge('challenge19')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>19. Memory</p>
-            <p onClick={() => updateChallenge('challenge20')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>20. Wordle</p>
-            <p onClick={() => updateChallenge('challenge21')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>21. Connect Four</p>
-            <p onClick={() => updateChallenge('challenge22')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>22. Snake</p>
-            <p onClick={() => updateChallenge('challenge23')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>23. useToggle</p>
-            <p onClick={() => updateChallenge('challenge26')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>24. movies</p>
-
-            <p onClick={() => updateChallenge('challenge27')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>25. Observer</p>
+            <p onClick={() => updateChallenge('challenge14')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>13. Lazy Loading Component</p>
+            <p onClick={() => updateChallenge('challenge16')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>14. Infinite Scroll</p>
+            <p onClick={() => updateChallenge('challenge17')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>15. Debounce</p>
+            <p onClick={() => updateChallenge('challenge19')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>16. Memory</p>
+            <p onClick={() => updateChallenge('challenge23')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>17. useToggle</p>
+            <p onClick={() => updateChallenge('challenge27')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>218. Observer</p>
+            <h2 className='text-lg'>Big Challenges</h2>
+            <p onClick={() => updateChallenge('challenge13')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>1. API</p>
+            <p onClick={() => updateChallenge('challenge15')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>2. Count Down</p>
+            <p onClick={() => updateChallenge('challenge18')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>3. Tic Tac Toe</p>
+            <p onClick={() => updateChallenge('challenge20')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>4. Wordle</p>
+            <p onClick={() => updateChallenge('challenge21')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>5. Connect Four</p>
+            <p onClick={() => updateChallenge('challenge22')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>6. Snake</p>
+            <p onClick={() => updateChallenge('challenge26')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>7. movies</p>
 
         </div>
     )
