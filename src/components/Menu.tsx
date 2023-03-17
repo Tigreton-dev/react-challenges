@@ -1,7 +1,7 @@
 
 const Menu = ({ updateChallenge }) => {
     return (
-        <div className="flex-none w-64 h-fit text-left mt-28 text-neutral-400 text-sm font-medium">
+        <div className="flex-none w-64 text-left mt-28 text-neutral-400 text-sm font-medium h-[calc(100vh-150px)] overflow-scroll">
             <h2 className='text-lg'>Challenges</h2>
             <p onClick={() => updateChallenge('../challenges/challenge1')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>1. Toggle Counter</p>
             <p onClick={() => updateChallenge('../challenges/challenge2')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>2. Menu Selector</p>
@@ -20,7 +20,7 @@ const Menu = ({ updateChallenge }) => {
             <p onClick={() => updateChallenge('../challenges/challenge15')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>15. Debounce</p>
             <p onClick={() => updateChallenge('../challenges/challenge16')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>16. Memory</p>
             <p onClick={() => updateChallenge('../challenges/challenge17')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>17. useToggle</p>
-            <p onClick={() => updateChallenge('../challenges/challenge18')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>218. Observer</p>
+            <p onClick={() => updateChallenge('../challenges/challenge18')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>18. Observer</p>
             <h2 className='text-lg'>Big Challenges</h2>
             <p onClick={() => updateChallenge('../bigChallenges/challenge1')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>1. API</p>
             <p onClick={() => updateChallenge('../bigChallenges/challenge2')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>2. Count Down</p>

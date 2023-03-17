@@ -1,17 +1,11 @@
-import { useEffect, useState } from 'react'
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import './Demo.css'
 
 const Demo = () => {
     const [Component, setComponent] = useState<React.ComponentType<any>>(() => lazy(() => import(`./Component1`)))
 
-    useEffect(() => {
-        const componentLoaded = lazy(() => import(`./Component1`));
-        setComponent(componentLoaded)
-    }, [])
-
     const clickHandler = (componentName: string) => {
-        const componentLoaded = lazy(() => import(`./${componentName}`));
+        const componentLoaded = lazy(() => delayForDemo(import(`./${componentName}`)));
         setComponent(componentLoaded)
     }
 
@@ -32,3 +26,10 @@ const Demo = () => {
 }
 
 export default Demo
+
+// Add a fixed delay so you can see the loading state
+function delayForDemo(promise) {
+    return new Promise(resolve => {
+        setTimeout(resolve, 500);
+    }).then(() => promise);
+}
