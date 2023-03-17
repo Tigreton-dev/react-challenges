@@ -6,7 +6,7 @@ import Content from './components/Content'
 
 function App() {
 	const [step, setStep] = useState(0)
-	const [challenge, setChallenge] = useState('challenge2')
+	const [challenge, setChallenge] = useState('../challenges/challenge1')
 
 	const MenuHandler = (e:string) => {
 		setChallenge(e)

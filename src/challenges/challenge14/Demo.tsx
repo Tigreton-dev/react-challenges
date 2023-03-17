@@ -1,34 +1,49 @@
-import { useEffect, useState } from 'react'
-import { lazy, Suspense } from 'react';
-import './Demo.css'
+import React, { useEffect, useRef, useState } from "react";
+import "./Demo.css";
 
-const Demo = () => {
-    const [Component, setComponent] = useState<React.ComponentType<any>>(() => lazy(() => import(`./Component1`)))
+export default function Demo() {
+    const containerRef = useRef(null)
+    const [isFetching, setIsFetching] = useState(false);
+    const [listItems, setListItems] = useState(
+        Array.from(Array(30).keys(), n => n + 1)
+    );
 
     useEffect(() => {
-        const componentLoaded = lazy(() => import(`./Component1`));
-        setComponent(componentLoaded)
-    }, [])
+        const handleScroll = () => {
+            const containerHeight = containerRef.current.offsetHeight;
+            const containerScroll = containerRef.current.scrollTop;
+            const containerScrollHeight = containerRef.current.scrollHeight;
+            if (containerHeight + containerScroll > containerScrollHeight) setIsFetching(true);
+        };
 
-    const clickHandler = (componentName: string) => {
-        const componentLoaded = lazy(() => import(`./${componentName}`));
-        setComponent(componentLoaded)
-    }
+        containerRef.current.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    useEffect(() => {
+        const fetchMoreListItems = () => {
+            setTimeout(() => {
+                setListItems(prevState => [
+                    ...prevState,
+                    ...Array.from(Array(20).keys(), n => n + prevState.length + 1)
+                ]);
+                setIsFetching(false);
+            }, 2000);
+        };
+
+        if (isFetching) fetchMoreListItems();
+    }, [isFetching]);
 
     return (
-        <div className='lazyLoading'>
-            <div>
-                <button onClick={() => clickHandler('Component1')}>Component 1</button>
-                <button onClick={() => clickHandler('Component2')}>Component 2</button>
-                <button onClick={() => clickHandler('Component3')}>Component 3</button>
-            </div>
-            <div className='component'>
-                <Suspense fallback={<div>Loading...</div>}>
-                    <Component />
-                </Suspense>
-            </div>
+        <div className="InfiniteScroll" ref={containerRef}>
+            <ul className="InfiniteScroll-list">
+                {listItems.map((listItem, n) => (
+                    <li key={n} className="InfiniteScroll-list-item">
+                        List Item {listItem}
+                    </li>
+                ))}
+            </ul>
+            {isFetching && "Fetching data..."}
         </div>
-    )
+    );
 }
-
-export default Demo

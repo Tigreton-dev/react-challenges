@@ -28,24 +28,14 @@
     gap: 8px 8px; 
     grid-template-areas: 
       ". . . . . ."
-      ". . . . . ."; 
+      ". . . . . ."
+      "aa aa . bb bb cc"; 
 }
 .CenterElements .container button {
     border: 1px solid red;
     border-radius: 5px;
     font-size: 22px;
 }
-
-
-
-
-
-
-
-.show-counter {
-    display: flex;
-}
-.show-counter div {
-    text-align: center;
-    width: 60px;
-}
+.CenterElements .aa { grid-area: aa; }
+.CenterElements .bb { grid-area: bb; }
+.CenterElements .cc { grid-area: cc; }

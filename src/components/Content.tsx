@@ -15,13 +15,13 @@ const Content = ({ step, challenge }: Props) => {
     const [challengeCode, setCode] = useState('')
 
     useEffect(() => {
-        const Challenge = lazy(() => import(`../challenges/${challenge}/Demo`));
+        const Challenge = lazy(() => import(`${challenge}/Demo`));
         setComponent(Challenge)
     }, [challenge])
 
     useEffect(() => {
         (async () => {
-            const { description, code } = await import(`../challenges/${challenge}/ChallengeInfo`)
+            const { description, code } = await import(`${challenge}/ChallengeInfo`)
             setDescription(description)
             setCode(code)
         })()
