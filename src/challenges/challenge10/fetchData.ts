@@ -7,9 +7,29 @@
 export async function getData(url: string) {
     try {
         const response = await fetch(url);
-        if (!response.ok) return _handleError(response.status);
+        if (!response.ok)
+            return _handleError(response.status, response.statusText);
         const data = await response.json();
         return data;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+/**
+ * GET AN IMAGE
+ *
+ * @param imageUrl
+ * @returns
+ */
+export async function getImage(imageUrl: string) {
+    try {
+        const response = await fetch(imageUrl);
+        if (!response.ok)
+            return _handleError(response.status, response.statusText);
+        const imageBlob = await response.blob();
+        const imageObjectURL = URL.createObjectURL(imageBlob);
+        return imageObjectURL;
     } catch (error: any) {
         throw new Error(error);
     }
@@ -37,27 +57,10 @@ export async function postData(url: string, data: object) {
             body: JSON.stringify(data), // body data type must match "Content-Type" header
         };
         const response = await fetch(url, request);
-        if (!response.ok) return _handleError(response.status);
+        if (!response.ok)
+            return _handleError(response.status, response.statusText);
         const responseData = response.json();
         return responseData;
-    } catch (error: any) {
-        throw new Error(error);
-    }
-}
-
-/**
- * GET AN IMAGE
- *
- * @param imageUrl
- * @returns
- */
-export async function getImage(imageUrl: string) {
-    try {
-        const response = await fetch(imageUrl);
-        if (!response.ok) return _handleError(response.status);
-        const imageBlob = await response.blob();
-        const imageObjectURL = URL.createObjectURL(imageBlob);
-        return imageObjectURL;
     } catch (error: any) {
         throw new Error(error);
     }
@@ -69,14 +72,10 @@ export async function getImage(imageUrl: string) {
  * @param status
  * @returns
  */
-function _handleError(status: number) {
-    if (status >= 400 && status < 500) {
-        throw new Error("Client Error response");
+function _handleError(status: number, statusText: string) {
+    if (status >= 400 || status < 600) {
+        throw new Error(`HTTP status code: ${status} ${statusText}`);
+    } else {
+        throw new Error(`Shomething went grong...`);
     }
-
-    if (status >= 500 && status < 600) {
-        throw new Error("Server error response");
-    }
-
-    throw new Error("Something went wrong...");
 }

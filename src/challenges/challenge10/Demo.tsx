@@ -1,44 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { getData, postData, getImage } from './fetchData'
-import "./Demo.css";
+import { useFetch, useImageFetch } from './useFetch'
 
 const GET_DATA_URL = 'https://randomuser.me/api/?results=20';
 const GET_IMAGE_URL = 'https://picsum.photos/200'
-const POST_DATA_URL = 'https://api.github.com/gists'
-
-interface error {
-    hasError: boolean;
-    message: string;
-}
+// const POST_DATA_URL = 'https://api.github.com/gists'
 
 export default function Demo() {
-    const [users, setUsers] = useState<Array<any> | null>(null)
-    const [image, setImage] = useState<string | null>(null)
-    const [errorState, setErrorState] = useState<error>({ hasError: false, message: "" })
+    const { loading, data, error, fetchData } = useFetch(GET_DATA_URL)
+    const { imageLoading, image, imageError, fetchImage } = useImageFetch(GET_IMAGE_URL)
 
-    useEffect(() => {
-        getData(GET_DATA_URL).then(data => setUsers(data.results)).catch(handleError)
-        getImage(GET_IMAGE_URL).then(setImage).catch(handleError)
-        const payload = {}
-        // postData(POST_DATA_URL, payload).then((response) => console.log(response)).catch(handleError)
-    }, [])
-
-    const handleError = (err: any) => {
-        setErrorState({ hasError: true, message: err.message })
-    }
-
-    if (users === null || image === null) return <div className="fetchData">loading...</div>
+    if (loading || imageLoading) return (<div className="flex flex-col items-center p-8 text-center border-solid border border-neutral-800 text-white bg-black rounded-xl text-xs min-h-[400px]"><h1>Loading...</h1></div >)
 
     return (
-        
-        <div className="fetchData">
-            {errorState.hasError && <div>{errorState.message}</div>}
-            {users.map(user => {
-                return (
-                    <p key={user.email}>{user.name.first}</p>
-                )
-            })}
+        <div className="flex flex-col items-center p-8 text-center border-solid border border-neutral-800 text-white bg-black rounded-xl text-xs min-h-[400px]">
+            {error.hasError && <h1>{error.message}</h1>}
+            {imageError.hasError && <h1>{imageError.message}</h1>}
+            {data.map((user: any) => <p key={user.email}>{user.name.first}</p>)}
             <img alt="" src={image} width="auto" height='auto' />
+            <button onClick={() => fetchData(GET_DATA_URL)} className="bg-blue-500 p-2 rounded-md m-5">Update Data</button>
+            <button onClick={() => fetchImage(GET_IMAGE_URL)} className="bg-blue-500 p-2 rounded-md m-5">Update Image</button>
         </div>
     );
 }
