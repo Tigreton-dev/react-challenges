@@ -1,5 +1,4 @@
 import LazyImage from './LazyImage';
-import "./Demo.css";
 
 const imageTags = [
     'water',
@@ -31,15 +30,14 @@ const imageTags = [
 const Demo = () => {
 
     return (
-        <div className='lazyImage'>
-            <div className='lazyImageGrid'>
-                {imageTags.map((item, index) => (
-                    <div key={index}>
-                        <LazyImage
-                            key={index}
-                            src={`https://source.unsplash.com/random/300x300?${item}`}
-                        />
-                    </div>
+        <div className='flex flex-col items-center p-8 text-center border-solid border border-neutral-800 text-white bg-black rounded-xl text-xs h-[600px] overflow-scroll'>
+            <div className='grid grid-cols-3 gap-3'>
+                {imageTags.map((image, index) => (
+                    <LazyImage
+                        key={index}
+                        key={index}
+                        src={`https://source.unsplash.com/random/300x300?${image}`}
+                    />
                 ))}
             </div>
         </div>
