@@ -3,57 +3,37 @@ import './Solution.css'
 
 
 const Solution = () => {
-    const [users, setUsers] = useState([])
-    const [error, setError] = useState('')
-    const [image, setImage] = useState(null)
+    const currentButton = useRef<null | HTMLButtonElement>(null)
+    const [currentSelector, setCurrentSelector] = useState('')
 
     useEffect(() => {
-        getData('https://randomuser.me/api/?results=20').then(data => setUsers(data.results)).catch(e => handleError(e))
-        getImage('https://picsum.photos/200').then(image => setImage(image)).catch(e => handleError(e))
+        const text = currentButton.current!.textContent as string
+        setCurrentSelector(text)
     }, [])
 
-    const handleError = (e) => {
-        setError(e)
-        console.log(e)
+    const clickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const target = e.target as HTMLButtonElement
+        const content = target.textContent as string
+        target.classList.remove('bg-zic-500')
+        target.classList.add('bg-orange-500')
+        currentButton.current!.classList.remove('bg-orange-500')
+        currentButton.current!.classList.add('bg-zinc-500')
+        currentButton.current = target
+        setCurrentSelector(content)
     }
 
+
     return (
-        <div className="bg-black min-h-[400px] rounded-lg border border-neutral-800 text-white text-center text-sm font-bold p-8 justify-center">
-            {error.length > 0 && <p>{error}</p>}
-            {users.map(user => {
-                return <p>{user.name.last}</p>
-            })}
-            <img src={image} />
+        <div className="bg-black min-h-[400px] rounded-lg border border-neutral-800 text-white text-center font-bold p-8 justify-center">
+            <div className="bg-zinc-800 p-5 rounded-md border border-zinc-700 text-xs">
+                <button ref={currentButton} onClick={e => clickHandler(e)} className="p-5 m-5 bg-orange-500 rounded-md">Selector 1</button>
+                <button onClick={e => clickHandler(e)} className="p-5 m-5 bg-zinc-500 rounded-md">Selector 2</button>
+                <button onClick={e => clickHandler(e)} className="p-5 m-5 bg-zinc-500 rounded-md">Selector 3</button>
+                <button onClick={e => clickHandler(e)} className="p-5 m-5 bg-zinc-500 rounded-md">Selector 4</button>
+            </div>
+            <h1>{currentSelector}</h1>
         </div >
     )
 }
 
 export default Solution;
-
-
-async function getData(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) handleError(response.status)
-        const data = await response.json();
-        return data
-    } catch (e) {
-        throw new Error(e)
-    }
-}
-
-async function getImage(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) handleError(response.status)
-        const blob = await response.blob()
-        const imageURL = URL.createObjectURL(blob)
-        return imageURL
-    } catch (e) {
-
-    }
-}
-
-function handleError(status: number) {
-    if (status === 400) throw new Error('400 error')
-}
