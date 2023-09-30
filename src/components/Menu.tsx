@@ -21,6 +21,7 @@ const Menu = ({ updateChallenge }) => {
             <p onClick={() => updateChallenge('../challenges/challenge16')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>16. Memory</p>
             <p onClick={() => updateChallenge('../challenges/challenge17')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>17. useToggle</p>
             <p onClick={() => updateChallenge('../challenges/challenge18')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>18. Observer</p>
+            <p onClick={() => updateChallenge('../challenges/challenge19')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>19. Pagination</p>
             <h2 className='text-lg'>Big Challenges</h2>
             <p onClick={() => updateChallenge('../bigChallenges/challenge1')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>1. API</p>
             <p onClick={() => updateChallenge('../bigChallenges/challenge2')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>2. Count Down</p>
@@ -30,6 +31,8 @@ const Menu = ({ updateChallenge }) => {
             <p onClick={() => updateChallenge('../bigChallenges/challenge6')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>6. Snake</p>
             <p onClick={() => updateChallenge('../bigChallenges/challenge7')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>7. movies</p>
             <p onClick={() => updateChallenge('../bigChallenges/challenge8')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>XXXXX</p>
+            <p onClick={() => updateChallenge('../bigChallenges/challenge10')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>List</p>
+            <p onClick={() => updateChallenge('../bigChallenges/challenge11')} className='p-2 hover:bg-neutral-800 hover:text-neutral-50 rounded-md m-2 cursor-pointer'>Tetris</p>
         </div>
     )
 }

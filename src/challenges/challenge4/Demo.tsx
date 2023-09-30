@@ -3,15 +3,16 @@ import React, { useState } from "react";
 const Demo = () => {
     const [size, setSize] = useState({ X: 700, Y: 400 })
 
-    const resizeRightHandler = (mouseDownEvent: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const resizeRightHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         const startSize = size;
-        const startPosition = { X: mouseDownEvent.pageX };
+        const startPosition = e.pageX;
 
-        function onMouseMove(mouseMoveEvent: MouseEvent) {
-            const currentMousePosition = mouseMoveEvent.pageX - startPosition.X
-            const updateValue = startSize.X + currentMousePosition
-            if (updateValue > 700) return
-            setSize({ X: updateValue, Y: size.Y });
+        function onMouseMove(e: MouseEvent) {
+            const currPos = e.pageX
+            const currentMousePosition = currPos - startPosition
+            const newValue = startSize.X + currentMousePosition
+            if (newValue > 700) return
+            setSize({ X: newValue, Y: size.Y });
         }
 
         function onMouseUp() {
